@@ -1,0 +1,128 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Produtos",
+    "version": "1.0.0",
+    "description": "Documentação da API do segundo bimestre"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4002"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Listar todos os produtos",
+        "responses": {
+          "200": {
+            "description": "Lista de produtos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo produto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Buscar um produto por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto encontrado"
+          },
+          "404": {
+            "description": "Produto não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um produto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Produto atualizado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um produto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto deletado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "color": { "type": "string" },
+          "weight": { "type": "number" },
+          "type": { "type": "string" },
+          "price": { "type": "number" },
+          "registerDate": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
