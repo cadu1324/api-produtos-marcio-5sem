@@ -18,8 +18,8 @@ Esta aplicação é uma API REST para gerenciamento de produtos, construída com
 ## 📦 Instalação
 
 ```bash
-git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
-cd NOME_DO_REPOSITORIO
+git clone https://github.com/cadu1324/api-produtos-marcio-5sem.git
+cd api-produtos-marcio-5sem
 npm install
 ```
 
@@ -107,7 +107,7 @@ Todos os campos são validados antes de persistir no banco.
 
 ## 👨‍💻 Autor
 
-Feito por [Seu Nome].  
+Feito por Carlos Eduardo.  
 Projeto acadêmico do segundo bimestre.
 
 ---
