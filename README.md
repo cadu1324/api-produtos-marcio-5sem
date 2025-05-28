@@ -30,7 +30,7 @@ npm install
 Crie um arquivo `.env` com a seguinte estrutura:
 
 ```env
-PORT=3000
+PORT=4002
 MONGO_URI=mongodb+srv://SEU_USUARIO:SENHA@seu-cluster.mongodb.net/seu-banco?retryWrites=true&w=majority
 ```
 
@@ -42,7 +42,7 @@ MONGO_URI=mongodb+srv://SEU_USUARIO:SENHA@seu-cluster.mongodb.net/seu-banco?retr
 npm start
 ```
 
-A API estará disponível em: `http://localhost:3000`
+A API estará disponível em: `http://localhost:4002`
 
 ---
 
@@ -51,7 +51,7 @@ A API estará disponível em: `http://localhost:3000`
 A documentação interativa da API está disponível em:
 
 ```
-GET http://localhost:3000/documentation
+GET http://localhost:4002/documentation
 ```
 
 Lá você pode testar endpoints como:
