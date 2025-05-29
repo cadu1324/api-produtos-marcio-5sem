@@ -7,16 +7,26 @@
   },
   "servers": [
     {
-      "url": "http://localhost:4002"
+      "url": "https://api-segundo-bimestre-marcio.fly.dev"
     }
   ],
   "paths": {
-    "/products": {
+    "/product": {
       "get": {
         "summary": "Listar todos os produtos",
         "responses": {
           "200": {
-            "description": "Lista de produtos"
+            "description": "Lista de produtos retornada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -34,12 +44,22 @@
         },
         "responses": {
           "201": {
-            "description": "Produto criado"
+            "description": "Produto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/products/{id}": {
+    "/product/{id}": {
       "get": {
         "summary": "Buscar um produto por ID",
         "parameters": [
@@ -54,7 +74,17 @@
         ],
         "responses": {
           "200": {
-            "description": "Produto encontrado"
+            "description": "Produto retornado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
           },
           "404": {
             "description": "Produto não encontrado"
@@ -85,7 +115,17 @@
         },
         "responses": {
           "200": {
-            "description": "Produto atualizado"
+            "description": "Produto atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
           }
         }
       },

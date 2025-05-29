@@ -1,2 +1,7 @@
 /node_modules
 .env
+Dockerfile
+fly.toml
+/.git
+.dockerignore
+fly-deploy.yml
