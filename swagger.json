@@ -48,9 +48,56 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos"
+          }
+        }
+      }
+    },
+    "/product/name/{name}": {
+      "get": {
+        "summary": "Buscar produtos por nome",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Nome do produto a ser buscado (case-insensitive)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de produtos com o nome especificado retornada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum produto encontrado com este nome",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Nenhum produto encontrado com este nome"
+                    }
                   }
                 }
               }
@@ -78,16 +125,42 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product"
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "ID inválido (esperado ObjectId de 24 caracteres)"
+                    }
                   }
                 }
               }
             }
           },
           "404": {
-            "description": "Produto não encontrado"
+            "description": "Produto não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto não encontrado"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -119,9 +192,38 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product"
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido ou dados inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "ID inválido (esperado ObjectId de 24 caracteres)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto não encontrado"
+                    }
                   }
                 }
               }
@@ -143,7 +245,52 @@
         ],
         "responses": {
           "200": {
-            "description": "Produto deletado"
+            "description": "Produto deletado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto deletado com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "ID inválido (esperado ObjectId de 24 caracteres)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Produto não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto não encontrado"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -154,14 +301,16 @@
       "Product": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "description": { "type": "string" },
-          "color": { "type": "string" },
-          "weight": { "type": "number" },
-          "type": { "type": "string" },
-          "price": { "type": "number" },
-          "registerDate": { "type": "string", "format": "date-time" }
-        }
+          "_id": { "type": "string", "readOnly": true, "description": "ID gerado automaticamente pelo MongoDB" },
+          "name": { "type": "string", "example": "Mouse Gamer RGB" },
+          "description": { "type": "string", "example": "Mouse com 6 botões programáveis e iluminação RGB" },
+          "color": { "type": "string", "example": "Preto" },
+          "weight": { "type": "number", "format": "float", "example": 0.2 },
+          "type": { "type": "string", "example": "Periférico" },
+          "price": { "type": "number", "format": "float", "example": 149.99 },
+          "registerDate": { "type": "string", "format": "date-time", "example": "2025-05-27T12:00:00.000Z" }
+        },
+        "required": ["name", "description", "color", "weight", "type", "price", "registerDate"]
       }
     }
   }

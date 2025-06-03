@@ -19,6 +19,16 @@ const getProductById = async (id) => {
   return { status: 200, data: product };
 };
 
+const getProductByName = async (name) => {
+  const product = await Product.find({ name: { $regex: new RegExp(name, 'i') } });
+
+  if (product.length === 0) {
+    return { status: 404, data: { message: 'Nenhum produto encontrado com este nome' } };
+  }
+
+  return { status: 200, data: product };
+};
+
 const createProduct = async (body) => {
   const newProduct = new Product(body);
   await newProduct.save();
@@ -54,6 +64,7 @@ const deleteProduct = async (id) => {
 module.exports = {
   getAllProducts,
   getProductById,
+  getProductByName,
   createProduct,
   updateProduct,
   deleteProduct,

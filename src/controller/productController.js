@@ -10,6 +10,11 @@ const getById = async (req, res) => {
   res.status(result.status).json(result.data);
 };
 
+const getByName = async (req, res) => {
+  const result = await productService.getProductByName(req.params.name);
+  res.status(result.status).json(result.data);
+};
+
 const create = async (req, res) => {
   const result = await productService.createProduct(req.body);
   res.status(result.status).json(result.data);
@@ -25,4 +30,4 @@ const remove = async (req, res) => {
   res.status(result.status).json(result.data);
 };
 
-module.exports = { getAll, getById, create, update, remove };
+module.exports = { getAll, getById, getByName, create, update, remove };
